@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <title sec:authentication="name"></title>
+    </head>
+    <body>
+        <h1 th:inline="text">Hello,
+        <span th:text="${#httpServletRequest.remoteUser}">World!</span>
+        </h1>
+        <div sec:authorize="hasAuthority('ADMIN')">
+        <a th:href="@{/welcome}">admin</a>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </body>
+</html>
